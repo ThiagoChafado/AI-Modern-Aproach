@@ -1,1 +1,1 @@
-# AI-Projects
+This repository contains all studies about AIMA book.
