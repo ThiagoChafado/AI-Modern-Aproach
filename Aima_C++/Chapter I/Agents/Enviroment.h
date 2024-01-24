@@ -20,6 +20,9 @@ public:
     void setQtdSquares(int qtd);
     void initialize();
     void addAgent(Agent& agent);
+    void agentOnSquare(Agent& agent,Square& square);
+    std::vector<Square> getSquares();
+    void addSquare(Square& square);
 };
 
 #endif

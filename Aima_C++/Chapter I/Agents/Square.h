@@ -10,11 +10,11 @@ private:
     bool isClean;
 
 public:
-    Square();
-    ~Square();
+    Square(int id);
 
     bool getIsClean();
     void setIsClean(bool status);
+    int getIdSquare();
 };
 
 #endif
