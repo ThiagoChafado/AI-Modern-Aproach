@@ -1,38 +1,21 @@
-#include <gtkmm.h>
 #include "Agent.h"
+#include "Enviroment.h"
+#include <iostream>
 
-class AgentWindow : public Gtk::Window {
-public:
-    AgentWindow() {
-        set_title("Agente GUI");
-        set_default_size(300, 200);
+int main() {
+    Agent::Program simpleProgram = [](const std::string& percept) -> std::string {
+        std::cout << "Agent perceives: " << percept << std::endl;
+        return "Do something";  
+    };
 
-        
-        agentButton.set_label("Agente");
-        agentButton.signal_clicked().connect(sigc::mem_fun(*this, &AgentWindow::on_agent_button_clicked));
+    Agent agent(simpleProgram);
+    std::cout << "Agent's representation: " << agent.repr() << std::endl;
+    std::cout << "Is the agent alive? " << (agent.isAlive() ? "Yes" : "No") << std::endl;
+    agent.showState();
 
-        
-        add(agentButton);
-        show_all_children();
-    }
-
-    virtual ~AgentWindow() {}
-
-protected:
- 
-    void on_agent_button_clicked() {
-        std::cout << "Botão do Agente clicado!" << std::endl;
-        
-    }
-
-    Gtk::Button agentButton;
-};
-
-int main(int argc, char* argv[]) {
-    auto app = Gtk::Application::create(argc, argv, "org.gtkmm.example");
-
-    AgentWindow agentWindow;
-
+    Enviroment enviroment(2);
+    std::cout << "Enviroment with " << enviroment.getQtdSquares() <<" Squares\n";
+    enviroment.addAgent(agent);
     
-    return app->run(agentWindow);
+    return 0;
 }

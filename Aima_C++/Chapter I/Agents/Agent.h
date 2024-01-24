@@ -15,15 +15,18 @@ public:
     Agent(Program program = nullptr);
     ~Agent();
 
-    bool can_grab(Thing &thing);
-    std::string get_program_output(std::string &percept);
-    void set_program(Program program);
+    bool canGrab(Thing &thing);
+    std::string getProgramOutput(std::string &percept);
+    void setProgram(Program program);
+    void setActualLocation();
+    void getActualLocation();
 
 private:
     bool bump;
     std::vector<Thing*> holding;
     int performance;
     Program program;
+    int actualLocation;
 };
 
 #endif // AGENT_H

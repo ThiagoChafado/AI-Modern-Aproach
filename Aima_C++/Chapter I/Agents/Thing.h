@@ -12,9 +12,8 @@ public:
     // Default constructor and desctructor
 
     std::string repr();
-    bool is_alive();
-    void show_state();
-    void display(std::string &canvas, int x, int y, int width, int height);
+    bool isAlive();
+    void showState();
 
 protected:
     bool alive;
