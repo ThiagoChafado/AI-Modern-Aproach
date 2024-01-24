@@ -1,28 +1,24 @@
 #ifndef THING_H
 
 #define THING_H
-#include <vector>
+
+#include <iostream>
 
 class Thing
 {
-private:
-    bool isAlive;
-    bool bump;
-    std::vector<Thing> holding;
-    int perfomance;
-
 public:
-    Thing(/* args */);
+    Thing();
     ~Thing();
+    // Default constructor and desctructor
+
+    std::string repr();
+    bool is_alive();
+    void show_state();
+    void display(std::string &canvas, int x, int y, int width, int height);
+
+protected:
+    bool alive;
+    std::string name;
 };
 
-Thing::Thing(/* args */)
-{
-
-}
-
-Thing::~Thing()
-{
-}
-
-#endif /*THING_H*/
+#endif // THING_H
