@@ -11,6 +11,7 @@ private:
 
 public:
     Square(int id);
+    Square();
 
     bool getIsClean();
     void setIsClean(bool status);

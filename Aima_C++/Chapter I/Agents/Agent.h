@@ -7,6 +7,7 @@
 #include <functional>
 #include <iostream>
 #include <vector>
+#include <string.h>
 
 
 class Agent : public Thing
@@ -17,13 +18,14 @@ public:
 
     bool canGrab(Thing &thing);
     void setActualLocation(Square &square);
-    int getActualLocation();
+    Square getActualLocation();
+    int action(Square &square,Agent &agent);
 
 private:
     bool bump;
     std::vector<Thing*> holding;
     int performance;
-    int actualLocation;
+    Square actualLocation;
 };
 
 #endif // AGENT_H
