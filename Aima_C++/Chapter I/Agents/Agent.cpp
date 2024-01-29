@@ -12,7 +12,6 @@ Agent::~Agent() {}
 
 bool Agent::canGrab(Thing &thing) /**/
 {
-    // Override for appropriate subclasses of Agent and Thing
     return false;
 }
 
