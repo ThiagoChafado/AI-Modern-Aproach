@@ -1,10 +1,10 @@
-#include "Puzzle.h"
+#include "State.h"
 
-std::vector<std::vector<int>> Puzzle::getBoard(){
+std::vector<std::vector<int>> State::getBoard(){
     return board;
 }
 
-void Puzzle::generateRandomInitialState()
+void State::generateRandomInitialState()
 {
     std::vector<int> puzzlePieces = {0, 1, 2, 3, 4, 5, 6, 7, 8};
     std::random_device rd;
@@ -21,7 +21,7 @@ void Puzzle::generateRandomInitialState()
     }
 }
 
-void Puzzle::printState() 
+void State::printState() 
 {
 
     for (auto &row : board)

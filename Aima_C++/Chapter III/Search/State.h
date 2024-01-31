@@ -1,24 +1,20 @@
-#if !defined(PUZZLE_H)
-
-#define PUZZLE_H
-
+#if !defined(STATE_H)
+#define STATE_H
 #include "vector"
 #include "random"
 #include "algorithm"
 #include "iostream"
 
-class Puzzle
+class State
 {
 private:
     std::vector<std::vector<int>> board;
 
 public:
-
-    
+    State(std::vector<std::vector<int>>);
     std::vector<std::vector<int>> getBoard();
     void generateRandomInitialState();
     void printState();
 };
 
-
-#endif // PUZZLE_H
+#endif // STATE_H
