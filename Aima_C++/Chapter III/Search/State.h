@@ -11,7 +11,8 @@ private:
     std::vector<std::vector<int>> board;
 
 public:
-    State(std::vector<std::vector<int>>);
+   // State(std::vector<std::vector<int>>);
+    void setBoard(std::vector<std::vector<int>> board);
     std::vector<std::vector<int>> getBoard();
     void generateRandomInitialState();
     void printState();

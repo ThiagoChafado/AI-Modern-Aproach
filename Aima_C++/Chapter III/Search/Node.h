@@ -12,9 +12,11 @@ private:
     double pathCost;
 
 public:
+
+    Node (State &state,std::string action);
     Node (State &state);
     Node (State &state,Node* parent,std::string action,double pathCost);
-
+    void printBoard();
     std::vector<std::vector<int>> getNodeBoard(Node &node);
     Node* getParent();
     std::string getAction();

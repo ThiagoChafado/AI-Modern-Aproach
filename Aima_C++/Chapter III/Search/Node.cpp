@@ -7,6 +7,27 @@ Node::Node(State &state){
     action = "";
     pathCost = 0;
 }
+void Node::printBoard() 
+{
+
+    for (auto &row : nodeBoard)
+    {
+        for (int value : row)
+        {
+            std::cout << value << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+
+Node::Node(State &state,std::string action){
+    this->nodeBoard = state.getBoard();
+    this->action = action;
+    this->parent = nullptr;
+    pathCost = 0;
+}
 
 Node::Node(State &state,Node* parent,std::string action,double pathCost){
     this->nodeBoard = state.getBoard();
