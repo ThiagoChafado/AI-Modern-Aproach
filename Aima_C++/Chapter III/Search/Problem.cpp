@@ -23,7 +23,6 @@ bool Problem::goalTest(Node &node){
     return node.getNodeBoard(node) == goalBoard;
 }
 
-
 State Problem::getState(){
     return state;
 }

@@ -1,5 +1,6 @@
 #if !defined(NODE_H)
 #include "State.h"
+
 #include "string"
 #define NODE_H
 
@@ -16,6 +17,8 @@ public:
     Node (State &state,std::string action);
     Node (State &state);
     Node (State &state,Node* parent,std::string action,double pathCost);
+    Node (State &state,Node* parent,std::string action);
+    
     void printBoard();
     std::vector<std::vector<int>> getNodeBoard(Node &node);
     Node* getParent();

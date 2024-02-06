@@ -3,16 +3,16 @@
 #include "queue"
 #include "list"
 
-Node childNode(State &state, Problem &problem, std::string action)
+Node childNode(State &state, Problem &problem,Node* parent, std::string action)
 {
     State nextState = problem.getResult(state, action);
-    Node child(nextState, action);
+    Node child(nextState,parent, action);
     return child;
 }
 
 Node childNodePath(State &state,Node &parent,Problem &problem,std::string action){
     State nextState = problem.getResult(state,action);
-    Node child(nextState,&;parent,action,parent.getPathCost()+1);
+    Node child(nextState,&parent,action,parent.getPathCost()+1);
 }
 
 //don't found
@@ -41,7 +41,7 @@ bool breadthFirstSearch(Problem &problem)
         std::vector<std::string> actions = problem.getActions(state);
         for (std::string &action : actions)
         {
-            Node child = childNode(state, problem, action);
+            Node child = childNode(state, problem, &node,action);
 
             bool isExplored = false;
             for(int i=0;i<explored.size();i++){

@@ -1,12 +1,17 @@
 #include "Node.h"
-
-
+Node::Node(State &state,Node* parent,std::string action){
+    this->nodeBoard = state.getBoard();
+    this->parent = parent;
+    this->action = action;
+    pathCost = 0;
+}
 Node::Node(State &state){
     nodeBoard = state.getBoard();
     parent = nullptr;
     action = "";
     pathCost = 0;
 }
+
 void Node::printBoard() 
 {
 
