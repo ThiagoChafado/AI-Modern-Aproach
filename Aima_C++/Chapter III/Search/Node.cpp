@@ -1,4 +1,5 @@
 #include "Node.h"
+
 Node::Node(State &state,Node* parent,std::string action){
     this->nodeBoard = state.getBoard();
     this->parent = parent;

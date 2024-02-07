@@ -1,10 +1,12 @@
-#if !defined(PROBLEM_H)
+#ifndef PROBLEM_H
 #define PROBLEM_H
 
-#include "vector"
 #include "State.h"
-#include "Node.h"
-#include "string"
+#include <vector>
+#include <string>
+
+
+class Node;
 
 class Problem 
 {
@@ -16,13 +18,10 @@ public:
    
     State getResult(State &state,std::string action);
     State getState();
-    bool goalTest(Node &node);
+    bool goalTest(Node &node); 
     std::vector<std::string> getActions(State &state);
     State getInitialState();
 
 };
-
-
-
 
 #endif // PROBLEM_H

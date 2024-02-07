@@ -2,26 +2,7 @@
 #include "Node.h"
 #include "queue"
 #include "list"
-
-bool verifyEqual(const std::vector<std::vector<int>>& board1, const std::vector<std::vector<int>>& board2) {
-    if (board1.size() != board2.size() || board1.empty()) {
-        return false;
-    }
-    
-    for (size_t i = 0; i < board1.size(); ++i) {
-        if (board1[i].size() != board2[i].size()) {
-            return false;
-        }
-        
-        for (size_t j = 0; j < board1[i].size(); ++j) {
-            if (board1[i][j] != board2[i][j]) {
-                return false;
-            }
-        }
-    }
-    
-    return true;
-}
+#include "Util.h"
 
 
 Node childNode(State &state, Problem &problem, Node *parent, std::string action)
@@ -31,6 +12,11 @@ Node childNode(State &state, Problem &problem, Node *parent, std::string action)
     return child;
 }
 
+Node childNodeWithPath(State &state,Problem &problem, Node *parent, std::string action){
+    State nextState = problem.getResult(state,action);
+    Node child(nextState,parent,action);
+    return child;
+}
 
 bool breadthFirstSearch(Problem &problem)
 {
