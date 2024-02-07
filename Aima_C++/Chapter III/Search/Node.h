@@ -20,7 +20,7 @@ public:
     Node (State &state,Node* parent,std::string action);
     
     void printBoard();
-    std::vector<std::vector<int>> getNodeBoard(Node &node);
+    std::vector<std::vector<int>> getNodeBoard();
     Node* getParent();
     std::string getAction();
     double getPathCost();

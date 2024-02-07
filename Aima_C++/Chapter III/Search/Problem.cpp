@@ -5,11 +5,8 @@
 Problem::Problem(State &initialState) : state(initialState) {
 }
 
-void Problem::getInitialState(){
-    State state;
-    state.generateRandomInitialState();
-    Problem problem(state);
-    std::vector<std::vector<int>> board = state.getBoard();
+State Problem::getInitialState(){
+   return state; 
 }
 
 
@@ -20,7 +17,7 @@ bool Problem::goalTest(Node &node){
         {6,7,8}
     };
 
-    return node.getNodeBoard(node) == goalBoard;
+    return node.getNodeBoard() == goalBoard;
 }
 
 State Problem::getState(){

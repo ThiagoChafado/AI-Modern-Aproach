@@ -3,29 +3,44 @@
 #include "queue"
 #include "list"
 
-Node childNode(State &state, Problem &problem,Node* parent, std::string action)
+bool verifyEqual(const std::vector<std::vector<int>>& board1, const std::vector<std::vector<int>>& board2) {
+    if (board1.size() != board2.size() || board1.empty()) {
+        return false;
+    }
+    
+    for (size_t i = 0; i < board1.size(); ++i) {
+        if (board1[i].size() != board2[i].size()) {
+            return false;
+        }
+        
+        for (size_t j = 0; j < board1[i].size(); ++j) {
+            if (board1[i][j] != board2[i][j]) {
+                return false;
+            }
+        }
+    }
+    
+    return true;
+}
+
+
+Node childNode(State &state, Problem &problem, Node *parent, std::string action)
 {
     State nextState = problem.getResult(state, action);
-    Node child(nextState,parent, action);
+    Node child(nextState, parent, action);
     return child;
 }
 
-Node childNodePath(State &state,Node &parent,Problem &problem,std::string action){
-    State nextState = problem.getResult(state,action);
-    Node child(nextState,&parent,action,parent.getPathCost()+1);
-}
 
-//don't found
 bool breadthFirstSearch(Problem &problem)
 {
-    std::cout<< "enter";
     State state;
-    state.generateRandomInitialState();
+    //state.generateRandomInitialState();
+    state.setBoard({{1, 2, 3}, {4, 0, 5}, {6, 7, 8}});
     Node node(state);
-    std::cout<< "enter";
+
     if (problem.goalTest(node))
     {
-        // Find Solution
         return true;
     }
     std::queue<Node> frontier;
@@ -35,17 +50,38 @@ bool breadthFirstSearch(Problem &problem)
     {
         node = frontier.front();
         frontier.pop();
+        bool isExplored = false;
+            for (int i = 0; i < explored.size(); i++)
+            {
+                if (verifyEqual(explored[i].getNodeBoard(), node.getNodeBoard()))
+                {
+                    isExplored = true;
+                }
+            }
+        if(isExplored){
+            continue;
+        }
+
         node.printBoard();
-        state.setBoard(node.getNodeBoard(node));
+        for (int i = 0; i < explored.size(); i++)
+            {
+                if (verifyEqual(explored[i].getNodeBoard(), node.getNodeBoard()))
+                {
+                    std::cout<< "Explored\n";
+                }
+            }
+        state.setBoard(node.getNodeBoard());
         explored.push_back(node);
         std::vector<std::string> actions = problem.getActions(state);
         for (std::string &action : actions)
         {
-            Node child = childNode(state, problem, &node,action);
+            Node child = childNode(state, problem, &node, action);
 
             bool isExplored = false;
-            for(int i=0;i<explored.size();i++){
-                if (explored[i].getNodeBoard(explored[i])==child.getNodeBoard(child)){
+            for (int i = 0; i < explored.size(); i++)
+            {
+                if (verifyEqual(explored[i].getNodeBoard(), node.getNodeBoard()))
+                {
                     isExplored = true;
                 }
             }
@@ -55,9 +91,9 @@ bool breadthFirstSearch(Problem &problem)
             while (!frontierCopy.empty())
             {
                 Node &frontierNode = frontierCopy.front();
-                std::vector<std::vector<int>> frontierBoard = frontierNode.getNodeBoard(frontierNode);
-                std::vector<std::vector<int>> childBoard = child.getNodeBoard(child);
-                if (frontierBoard == childBoard)
+                std::vector<std::vector<int>> frontierBoard = frontierNode.getNodeBoard();
+                std::vector<std::vector<int>> childBoard = child.getNodeBoard();
+                if (verifyEqual(frontierBoard, childBoard))
                 {
                     isChildInFrontier = true;
                     break;
@@ -68,27 +104,28 @@ bool breadthFirstSearch(Problem &problem)
             {
                 if (problem.goalTest(child))
                 {
+                    child.printBoard();
                     return true;
                 }
                 frontier.push(child);
             }
-            
         }
     }
     return false;
 }
 
-
-
 int main()
 {
     State state;
     Problem problem(state);
-    std::cout<<"Problem Created\n";
+    std::cout << "Problem Created\n";
     bool solution = breadthFirstSearch(problem);
-     if (solution) {
+    if (solution)
+    {
         std::cout << "Solution found!" << std::endl;
-    } else {
+    }
+    else
+    {
         std::cout << "No solution found." << std::endl;
     }
     return 0;

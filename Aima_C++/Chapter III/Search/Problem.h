@@ -18,7 +18,7 @@ public:
     State getState();
     bool goalTest(Node &node);
     std::vector<std::string> getActions(State &state);
-    void getInitialState();
+    State getInitialState();
 
 };
 

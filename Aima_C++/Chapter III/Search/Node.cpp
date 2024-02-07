@@ -40,7 +40,7 @@ Node::Node(State &state,Node* parent,std::string action,double pathCost){
     this->action = action;
     this->pathCost = pathCost;
 }
-std::vector<std::vector<int>> Node::getNodeBoard(Node &node){
+std::vector<std::vector<int>> Node::getNodeBoard(){
     return nodeBoard;
 }
 
